@@ -226,7 +226,7 @@ h2 + .entry.line { margin-top: calc(14 * var(--u)); }
         <ul class="bullets">
           <li><span class="label">Context</span>: Complete rebuild of the native companion app of the Unistellar telescopes, on iOS and Android, replacing the previous generation: new architecture, SwiftUI and Jetpack Compose, telescopes driven over Wi-Fi. Discovery and connection, live control and observation, science campaigns, catalog of celestial objects, firmware updates.</li>
           <li><span class="label">Concurrency</span>: Swift Concurrency with actor-isolated services and Observation-based stores; Kotlin coroutines and Flow on Android. One owner per piece of state, Sendable types across boundaries, cancellation propagated end to end and continuations resumed exactly once.</li>
-          <li><span class="label">Performance</span>: Telescope events arrive several times per second: throttled and published only on change. Device overheating investigated with Instruments through A/B runs (renderer on/off, terrain on/off) and traced to per-frame rebuilds in one rendering pass.</li>
+          <li><span class="label">Performance</span>: Telescope events arrive several times per second: throttled and published only on change. Device overheating investigated with Instruments through A/B runs (renderer on/off, terrain on/off), cause isolated in the planetarium below.</li>
           <li><span class="label">Delivery</span>: Store releases on both platforms with Fastlane and GitLab CI, firmware and object catalog embedded in each build, native symbols uploaded to Crashlytics.</li>
           <li><span class="label">Stack</span>: Swift, SwiftUI, Swift Concurrency, Swift Packages, Core Bluetooth. Kotlin, Jetpack Compose, coroutines &amp; Flow, Koin, Room. Firebase (Auth, Firestore, Functions, Crashlytics, Messaging).</li>
         </ul>
@@ -260,7 +260,6 @@ h2 + .entry.line { margin-top: calc(14 * var(--u)); }
         <ul class="bullets">
           <li><span class="label">Release environment</span>: Built an agent-driven environment that ships store versions on iOS and Android end to end: release branch, version bump, firmware and catalog embedded and checked, signed build, package and signature verified, distribution, tags across repositories, changelog published. Every irreversible step waits for human validation. Same approach for OTA firmware packaging, iOS-to-Android porting and tickets.</li>
           <li><span class="label">Tools for agents</span>: A read-only service that discovers telescopes on the network and streams their logs live, so an agent debugging the app reads what the hardware is doing at the same moment. An internal desktop admin app (Electron) for telescope operations.</li>
-          <li><span class="label">Approach</span>: Agents work under the same rules as the team: performance, no data races, correct cancellation, separation of concerns, every change reviewed.</li>
         </ul>
       </div>
     </div>
