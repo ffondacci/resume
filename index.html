@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florent Fondacci - Technical Resume</title>
+<meta name="description" content="Florent Fondacci, Mobile Lead iOS &amp; Android: architecture, Bluetooth protocol, over-the-air firmware updates, C++ rendering and performance, project by project.">
+<meta property="og:title" content="Florent Fondacci - Technical Resume">
+<meta property="og:description" content="Mobile Lead iOS &amp; Android: architecture, Bluetooth, firmware updates, performance, project by project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;700&display=block" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Sizing: every length is written in "units" (u), 1u = 1/925 of the
+   text block width. The layout therefore always fills the printable
+   width exactly, whatever scale the browser applies when printing.
+   To switch to A4: replace "Letter" with "A4" below (same margins).
+------------------------------------------------------------------- */
+@page { size: Letter; margin: 29.6pt 31.2pt 29.6pt 31.2pt; }
+
+:root {
+  --u: calc(100cqw / 925);
+  --ink: #000;
+  --accent: #3994bb;       /* section titles */
+  --accent-dark: #004f71;  /* name, job titles */
+  --side: calc(220 * var(--u));   /* left column */
+  --line: calc(22.4 * var(--u));  /* body line height */
+  --gap-item: calc(3.5 * var(--u));   /* between bullets */
+  --gap-para: calc(5.25 * var(--u));  /* between paragraphs */
+  --gap-title: calc(6.8 * var(--u));  /* under a name or job title */
+  --gap-entry: calc(20 * var(--u));   /* between entries and sections */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { container-type: inline-size; background: #fff; }
+
+.page {
+  font-family: "Overpass Mono", ui-monospace, Menlo, monospace;
+  font-weight: 300;
+  font-size: calc(14 * var(--u));
+  line-height: var(--line);
+  color: var(--ink);
+  font-variant-ligatures: common-ligatures;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+@media screen {
+  html { background: #f2f7fc; }
+  body { box-sizing: content-box; width: 925px; margin: 30px auto; padding: 50px 52.5px; }
+}
+
+b, strong, h1, h2, h3 { font-weight: 700; }
+h1, h2, h3 { font-size: inherit; line-height: inherit; }
+a { color: inherit; text-decoration: none; }
+.main p a, .main li a { text-decoration: underline; }
+ul { list-style: none; }
+
+/* ---- header ---- */
+.header {
+  display: grid;
+  grid-template-columns: var(--side) calc(303.5 * var(--u)) calc(255 * var(--u)) 1fr;
+  row-gap: var(--gap-item);
+  padding-top: calc(3 * var(--u));
+}
+.header h1 { color: var(--accent-dark); }
+.header .who { grid-row: 1 / span 2; padding-right: calc(30 * var(--u)); }
+.header .who p { margin-top: var(--gap-item); }
+.header .where { padding-right: calc(48.5 * var(--u)); }
+.header p:not(.where):not(.role) { white-space: nowrap; }
+
+.summary {
+  margin: calc(70 * var(--u)) 0 0 var(--side);
+  max-width: calc(660 * var(--u));
+  font-weight: 700;
+  line-height: calc(19.6 * var(--u));
+}
+
+/* ---- sections and entries ---- */
+section { margin-top: var(--gap-entry); }
+h2 { color: var(--accent); }
+
+.entry {
+  display: grid;
+  grid-template-columns: var(--side) 1fr;
+  margin-top: var(--gap-entry);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+h2 + .entry { margin-top: calc(18.6 * var(--u)); }
+/* keeps a section title on the same page as its first entry */
+.keep { break-inside: avoid; page-break-inside: avoid; }
+
+.side { padding: calc(1 * var(--u)) calc(30 * var(--u)) 0 0; }
+.side p { margin-top: var(--gap-title); }
+.main h3 { color: var(--accent-dark); margin-bottom: var(--gap-title); }
+.main p { margin-bottom: var(--gap-para); }
+
+/* real bullet list: wrapped lines stay indented */
+ul.bullets > li { position: relative; padding-left: calc(16 * var(--u)); margin-bottom: var(--gap-item); }
+ul.bullets > li::before { content: "\2022"; position: absolute; left: 0; }
+ul.bullets ul { margin-top: calc(5 * var(--u)); }
+ul.bullets ul > li { margin-bottom: 0; }
+/* inline bullets: wrapped lines come back to the column edge */
+ul.inline > li { margin-bottom: var(--gap-para); }
+ul.inline > li::before { content: "\2022\00a0"; }
+
+/* entries without a job title: content sits slightly lower than the label */
+.entry.untitled .main { padding-top: calc(9.9 * var(--u)); }
+.entry.untitled.flush .main { padding-top: 0; }
+.entry.untitled.flush .side { padding-top: 0; }
+
+/* ---- per-section adjustments ---- */
+.languages { margin-top: calc(40 * var(--u)); }
+.languages .entry { margin-top: 0; }
+.languages .side { padding-top: 0; }
+.languages .main { display: grid; grid-template-columns: calc(235 * var(--u)) calc(235 * var(--u)); padding-top: calc(1 * var(--u)); }
+.languages .level { font-size: calc(16 * var(--u)); line-height: calc(25.6 * var(--u)); margin-top: calc(-0.3 * var(--u)); margin-bottom: 0; }
+.skills { margin-top: calc(81.5 * var(--u)); }
+.more { margin-top: calc(51.35 * var(--u)); }
+
+.languages .main h3 { margin-bottom: var(--gap-title); }
+</style>
+<style>
+/* ---- v2: compact variant (same type, colours and grid as the original) ---- */
+.summary { margin-top: calc(34 * var(--u)); max-width: none; }
+.first { margin-top: calc(34 * var(--u)); }
+.entry { margin-top: calc(15 * var(--u)); }
+h2 + .entry { margin-top: calc(14 * var(--u)); }
+.stack { color: var(--accent-dark); }
+.entry.line .side { padding-top: 0; }
+.entry.line .main p { margin-bottom: 0; }
+.entry.line { margin-top: calc(7 * var(--u)); }
+h2 + .entry.line { margin-top: calc(14 * var(--u)); }
+.skills-compact .entry.line { margin-top: calc(10 * var(--u)); }
+.skills-compact h2 + .entry.line { margin-top: calc(14 * var(--u)); }
+.stackline .main p { color: var(--accent-dark); }
+</style>
+<style>
+/* ---- technical resume ---- */
+.entry .main h3 + p.pitch { margin: 0 0 var(--gap-title); }
+.label { color: var(--accent-dark); font-weight: 700; }
+.other .main p { margin-bottom: var(--gap-para); }
+</style>
+<style>
+/* ---- web version: readable on any screen ---- */
+.summary a { text-decoration: underline; }
+@media screen and (max-width: 1060px) {
+  html { background: #fff; }
+  body { width: auto; margin: 0; padding: 24px 16px 40px; container-type: normal; }
+  :root { --u: 0.93px; }
+  .header { grid-template-columns: 1fr; row-gap: 2px; }
+  .header .who { grid-row: auto; padding: 0 0 10px; }
+  .header p:not(.where):not(.role) { white-space: normal; }
+  .header .where { padding-right: 0; }
+  .summary { margin: 28px 0 0; max-width: none; }
+  .entry { grid-template-columns: 1fr; }
+  .side { display: flex; flex-wrap: wrap; column-gap: 14px; padding: 0 0 6px; }
+  .side p { margin-top: 0; }
+  .side h3 { flex-basis: 100%; }
+  .entry.line .side { padding-bottom: 2px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="header">
+  <div class="who">
+    <h1>Florent Fondacci</h1>
+    <p class="role">Technical Resume</p>
+  </div>
+  <p class="where">Marseille - Barcelona<br>Remote only (Europe &amp; International)</p>
+  <p><a href="http://www.linkedin.com/in/ffondacci">linkedin.com/in/ffondacci</a></p>
+  <p><a href="http://www.github.com/ffondacci">github.com/ffondacci</a></p>
+</header>
+
+<p class="summary">Detail of the main projects behind my resume: context, architecture, the hard problems and how they were solved. For technical interviewers. Contact through <a href="http://www.linkedin.com/in/ffondacci">LinkedIn</a>.</p>
+
+<section class="experience first">
+  <div class="keep">
+    <h2>Projects</h2>
+    <div class="entry">
+      <div class="side">
+        <h3>Envision binoculars</h3>
+        <p>2025 - Current</p>
+        <p>Unistellar</p>
+      </div>
+      <div class="main">
+        <h3>AR smart binoculars, iOS &amp; Android</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Binoculars that overlay augmented reality (peak names, terrain silhouettes, sky objects) on what the user sees. Built the whole app side alone on iOS, then ported it to Android: connection, control, data transfer, firmware updates, calibration.</li>
+          <li><span class="label">Bluetooth protocol</span>: Custom binary TLV over BLE GATT (sync header, command, length, payload, CRC), byte-identical on iOS and Android. MTU negotiated to ~500 bytes (Android defaults to 23). Silent auto-connect, one-device guard, recovery from out-of-range, power-off and background.</li>
+          <li><span class="label">Firmware over the air</span>: Multi-chip updates over Bluetooth: dual-core STM32, nRF radio and on-device file system. The app diffs the cloud manifest against the one on the device, downloads only what changed, checks every file by SHA-256, streams packages into a free A/B slot, verifies versions after reboot and rewrites the device manifest. Rescue mode for bricked units, remote kill switch and staged rollout without an app release.</li>
+          <li><span class="label">Terrain AR</span>: Cancellable 6-step pipeline: precise GPS fix, OpenStreetMap terrain silhouettes and points of interest computed on the phone, device buffers flushed, bulk write to the binoculars with live progress and ETA. Follow mode re-syncs when the user moves.</li>
+          <li><span class="label">Calibration 360</span>: Guided flow that teaches the binoculars a map of their own compass errors all around the user, with magnetic-interference detection.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <div class="entry">
+      <div class="side">
+        <h3>App architecture</h3>
+        <p>2025 - Current</p>
+        <p>Unistellar</p>
+      </div>
+      <div class="main">
+        <h3>Designed for the rebuild: modular, shared, astronomy at the core</h3>
+        <ul class="bullets">
+          <li><span class="label">Modularity</span>: iOS app split into ~40 feature modules (catalog, observation, science, gallery, connection, firmware, binoculars…) on top of 14 Swift packages with a strict, layered dependency graph: common → models, logging, Bluetooth → database, astronomy, binocular protocol → catalog. Android mirrors the same modules and names, so features port module by module.</li>
+          <li><span class="label">Layering</span>: Services talk to the hardware (transport, retries, fallback), stores own state and decide when to act, views only display. One responsibility per type, each layer replaceable by a mock for tests and debug devices.</li>
+          <li><span class="label">Shared code</span>: C++ sky map engine compiled for both platforms, Swift packages consumed through SPM, Android shared library consumed as a Git submodule with its own sample app.</li>
+          <li><span class="label">Astronomy engine</span>: Julian date, local apparent sidereal time, precession, RA/Dec ↔ alt/az; trajectories of moving objects interpolated from ephemerides; root-finding for rise, set and observable windows; visibility of the whole catalog computed in batches for the user's place and night.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3><a href="https://www.unistellar.com/">Unistellar app</a></h3>
+        <p>Apr 2025 - Current</p>
+        <p>Unistellar</p>
+      </div>
+      <div class="main">
+        <h3>Full rebuild of the iOS &amp; Android telescope app</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Complete rebuild of the native companion app of the Unistellar telescopes, on iOS and Android, replacing the previous generation: new architecture, SwiftUI and Jetpack Compose, telescopes driven over Wi-Fi. Discovery and connection, live control and observation, science campaigns, catalog of celestial objects, firmware updates.</li>
+          <li><span class="label">Concurrency</span>: Swift Concurrency with actor-isolated services and Observation-based stores; Kotlin coroutines and Flow on Android. One owner per piece of state, Sendable types across boundaries, cancellation propagated end to end and continuations resumed exactly once.</li>
+          <li><span class="label">Performance</span>: Telescope events arrive several times per second: throttled and published only on change. Device overheating investigated with Instruments through A/B runs (renderer on/off, terrain on/off) and traced to per-frame rebuilds in one rendering pass.</li>
+          <li><span class="label">Delivery</span>: Store releases on both platforms with Fastlane and GitLab CI, firmware and object catalog embedded in each build, native symbols uploaded to Crashlytics.</li>
+          <li><span class="label">Stack</span>: Swift, SwiftUI, Swift Concurrency, Swift Packages, Core Bluetooth. Kotlin, Jetpack Compose, coroutines &amp; Flow, Koin, Room. Firebase (Auth, Firestore, Functions, Crashlytics, Messaging).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3>Sky map renderer</h3>
+        <p>2025 - Current</p>
+        <p>Unistellar</p>
+      </div>
+      <div class="main">
+        <h3>Cross-platform C++ planetarium engine</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Real-time sky map at the heart of the app: stars, planets, deep-sky objects, terrain and horizon, labels in several scripts, shared by iOS and Android. Main contributor.</li>
+          <li><span class="label">Engineering</span>: C++ on bgfx with Metal, Vulkan and OpenGL ES back-ends, native bindings for Swift and Android. Font atlases covering Latin, Greek, Cyrillic and Japanese, solar eclipse rendering, procedural Milky Way and sky effects.</li>
+          <li><span class="label">Performance</span>: Frame loop profiled at 60 fps on phones: per-frame allocations, cache rebuilds and GPU buffer uploads isolated as the source of overheating; thermal state tracked as a first-class metric.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3>Agentic tooling</h3>
+        <p>2026 - Current</p>
+        <p>Unistellar</p>
+      </div>
+      <div class="main">
+        <h3>Claude Code as part of the engineering workflow</h3>
+        <ul class="bullets">
+          <li><span class="label">Release environment</span>: Built an agent-driven environment that ships store versions on iOS and Android end to end: release branch, version bump, firmware and catalog embedded and checked, signed build, package and signature verified, distribution, tags across repositories, changelog published. Every irreversible step waits for human validation. Same approach for OTA firmware packaging, iOS-to-Android porting and tickets.</li>
+          <li><span class="label">Tools for agents</span>: A read-only service that discovers telescopes on the network and streams their logs live, so an agent debugging the app reads what the hardware is doing at the same moment. An internal desktop admin app (Electron) for telescope operations.</li>
+          <li><span class="label">Approach</span>: Agents work under the same rules as the team: performance, no data races, correct cancellation, separation of concerns, every change reviewed.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3>Skratchy</h3>
+        <p>Feb 2019 - Jan 2024</p>
+        <p>Mobsuccess</p>
+      </div>
+      <div class="main">
+        <h3>Free lottery app, iOS, Android and backend, built alone</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Lootbox openings, ad views and in-app currency converted into real-money rewards. Sole developer from design to production for 5 years.</li>
+          <li><span class="label">Scale</span>: <b>1.5M+ downloads</b> (700k iOS, 800k Android), <b>150k daily users</b>, peaks of <b>40k simultaneous users</b>.</li>
+          <li><span class="label">Backend</span>: Firebase and Google Cloud Platform: real-time data synchronization, high availability, fraud detection on rewards, dynamic updates without app releases, multi-language rollout.</li>
+          <li><span class="label">Client</span>: UIKit on iOS with advanced particle animations, SwiftUI widgets, Kotlin and XML on Android.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3><a href="https://www.adaptive-channel.com/">Riyadh Air Companion</a></h3>
+        <p>Jan 2024 - Sep 2024</p>
+        <p>Adaptive Channel</p>
+      </div>
+      <div class="main">
+        <h3>Airline companion app paired with in-flight systems</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Lead iOS developer of the Riyadh Air Companion App: boarding experience and pairing with seat-back entertainment systems, with Publicis, IBM and Panasonic. Deployed in Saudi Arabia and Los Angeles. Details under NDA.</li>
+          <li><span class="label">Legacy migration</span>: A 10-year-old Objective-C macOS app rewritten in SwiftUI, with offline content synchronization to airline iPads.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3><a href="https://www.ikomobi.com/">Chronodrive</a></h3>
+        <p>Nov 2024 - Mar 2025</p>
+        <p>Ikomobi</p>
+      </div>
+      <div class="main">
+        <h3>Grocery pickup and delivery app, Android</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Jetpack Compose features in a 7-year-old codebase mixing several architectures (XML, data binding, Compose), production release every 2 weeks with designers and product owners.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="side">
+        <h3><a href="https://www.hosco.com/">Hosco</a></h3>
+        <p>Jan 2015 - Mar 2019</p>
+        <p>on-site, Barcelona</p>
+      </div>
+      <div class="main">
+        <h3>Professional network for the hospitality industry</h3>
+        <ul class="bullets">
+          <li><span class="label">Context</span>: Led the iOS app and managed a team of 3 Android developers, at feature parity with the web platform.</li>
+          <li><span class="label">Engineering</span>: Swift, UIKit, CoreData, CloudKit, push notifications. Architecture built to follow the web product feature by feature with consistent data synchronization.</li>
+        </ul>
+      </div>
+    </div>
+</section>
+
+<section class="skills-compact other">
+  <div class="keep">
+    <h2>Earlier Work</h2>
+    <div class="entry line">
+      <div class="side"><h3>Synertic</h3><p>2013 - 2015</p></div>
+      <div class="main"><p><b>Arianespace</b> iPad app (launch follow-up), <b>Essilor</b> vision-testing equipment software (JavaFX), C++/OpenCV industrial image processing.</p></div>
+    </div>
+  </div>
+    <div class="entry line">
+      <div class="side"><h3>buzzNApps</h3><p>2010 - 2013</p></div>
+      <div class="main"><p><b><a href="https://www.behance.net/gallery/51896495/Fautes-de-Francais">Fautes de Français</a></b>: 800,000+ downloads, Apple “App of the Week”, real-time dictations and instant grading. Other apps featured by Apple.</p></div>
+    </div>
+    <div class="entry line">
+      <div class="side"><h3>Soclip</h3></div>
+      <div class="main"><p>Android: real-time animation engine turning photos into music-synced MP4 videos, covered by 20minutes.fr, RTL.fr and Journal du Geek.</p></div>
+    </div>
+    <div class="entry line">
+      <div class="side"><h3>Pixwoo</h3></div>
+      <div class="main"><p>iOS: social network for gamers, built end to end.</p></div>
+    </div>
+</section>
+
+</div>
+</body>
+</html>
