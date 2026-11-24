@@ -210,7 +210,7 @@ h2 + .entry.line { margin-top: calc(14 * var(--u)); }
         <ul class="bullets">
           <li><span class="label">Modularity</span>: iOS app split into ~40 feature modules (catalog, observation, science, gallery, connection, firmware, binoculars…) on top of 14 Swift packages with a strict, layered dependency graph: common → models, logging, Bluetooth → database, astronomy, binocular protocol → catalog. Android mirrors the same modules and names, so features port module by module.</li>
           <li><span class="label">Layering</span>: Services talk to the hardware (transport, retries, fallback), stores own state and decide when to act, views only display. One responsibility per type, each layer replaceable by a mock for tests and debug devices.</li>
-          <li><span class="label">Shared code</span>: C++ sky map engine compiled for both platforms, Swift packages consumed through SPM, Android shared library consumed as a Git submodule with its own sample app.</li>
+          <li><span class="label">Shared code</span>: C++ planetarium engine compiled for both platforms, Swift packages consumed through SPM, Android shared library consumed as a Git submodule with its own sample app.</li>
           <li><span class="label">Astronomy engine</span>: Julian date, local apparent sidereal time, precession, RA/Dec ↔ alt/az; trajectories of moving objects interpolated from ephemerides; root-finding for rise, set and observable windows; visibility of the whole catalog computed in batches for the user's place and night.</li>
         </ul>
       </div>
@@ -234,15 +234,17 @@ h2 + .entry.line { margin-top: calc(14 * var(--u)); }
     </div>
     <div class="entry">
       <div class="side">
-        <h3>Sky map renderer</h3>
-        <p>2025 - Current</p>
+        <h3>Planetarium</h3>
+        <p>Sep 2025 - Current</p>
         <p>Unistellar</p>
       </div>
       <div class="main">
-        <h3>Cross-platform C++ planetarium engine</h3>
+        <h3>Cross-platform C++ planetarium engine on bgfx</h3>
         <ul class="bullets">
-          <li><span class="label">Context</span>: Real-time sky map at the heart of the app: stars, planets, deep-sky objects, terrain and horizon, labels in several scripts, shared by iOS and Android. Main contributor.</li>
-          <li><span class="label">Engineering</span>: C++ on bgfx with Metal, Vulkan and OpenGL ES back-ends, native bindings for Swift and Android. Font atlases covering Latin, Greek, Cyrillic and Japanese, solar eclipse rendering, procedural Milky Way and sky effects.</li>
+          <li><span class="label">Context</span>: Real-time sky at the heart of the app: stars, planets, deep-sky objects, terrain and horizon, shared by iOS and Android. Engine created by a teammate; I followed it from September 2025 and carried most of its new features on both platforms.</li>
+          <li><span class="label">Rendering</span>: Vulkan and OpenGL ES back-ends on Android next to Metal on iOS, validated on device. Coordinate grids, horizon ring with cardinal points, star trails, ecliptic, night vision, procedural Milky Way, aurora and airglow, procedural planet shader, solar eclipse with corona and animated prominences.</li>
+          <li><span class="label">Animation &amp; camera</span>: Intro that opens the sky 24 h ahead and glides back to now, sunrise and sunset intro with eased twilight, smooth time-scrub camera, follow-selection camera, crossfades so no object ever pops.</li>
+          <li><span class="label">Two platforms</span>: Every engine feature exposed through native bindings and shipped on iOS and Android together. Native calls serialized behind a single lock on Android, ABI checks on the exported Android library, labels in Latin, Greek, Cyrillic and Japanese without overlap.</li>
           <li><span class="label">Performance</span>: Frame loop profiled at 60 fps on phones: per-frame allocations, cache rebuilds and GPU buffer uploads isolated as the source of overheating; thermal state tracked as a first-class metric.</li>
         </ul>
       </div>
